@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,10 @@ public class RecyclerActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_recycler);
         binding = ActivityRecyclerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+//Get-Params-form-First-Activity
+        Intent intent = getIntent();
+        String value = intent.getStringExtra("keySizeParam"); //if it's a string you stored.
+
         TextView tvRecycler = (TextView) findViewById(R.id.random_number_result);
 
         Random rand = new Random(); //instance of random class
@@ -65,11 +70,11 @@ public class RecyclerActivity extends AppCompatActivity {
 
 
         ArrayList<Model> list= new ArrayList();
-        list.add(new Model(Model.TEXT_TYPE,"Hello. This is the Text-only View Type. Nice to meet you",0));
-        list.add(new Model(Model.TEXT_TYPE,"Hello1. This is the Text-only View Type. Nice to meet you",0));
-        list.add(new Model(Model.TEXT_TYPE,"Hello2. This is the Text-only View Type. Nice to meet you",0));
-        list.add(new Model(Model.TEXT_TYPE,"Hello3. This is the Text-only View Type. Nice to meet you",0));
-
+//        list.add(new Model(Model.TEXT_TYPE,"Hello. This is the Text-only View Type. Nice to meet you",0));
+//        list.add(new Model(Model.TEXT_TYPE,"Hello1. This is the Text-only View Type. Nice to meet you",0));
+//        list.add(new Model(Model.TEXT_TYPE,"Hello2. This is the Text-only View Type. Nice to meet you",0));
+//        list.add(new Model(Model.TEXT_TYPE,"Hello3. This is the Text-only View Type. Nice to meet you",0));
+        int keyS = Integer.valueOf(value);
         for (short i = 1; i < keyS; i++) {
            String randTXT = String.valueOf(rand.nextInt(i));
             Log.d(TAG, "viewId: " + randTXT);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +23,18 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Button buttonMain = binding.content.getRandomNums;
+        EditText sizeParam = binding.content.sizeParam;
+
         buttonMain.setOnClickListener(v ->
         {
             Log.d(TAG, "viewId: " + "viewId");
 
             //Start-New-Activity
+
             Intent myIntent = new Intent(MainActivity.this, RecyclerActivity.class);
-            String value = "PROVERKA";
-            myIntent.putExtra("key", value); //Optional parameters
+//            String value = "PROVERKA";
+            String value = String.valueOf(sizeParam.getText());
+            myIntent.putExtra("keySizeParam", value); //Optional parameters
             this.startActivity(myIntent);
         });
     }
