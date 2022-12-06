@@ -78,14 +78,20 @@ public class RecyclerActivity extends AppCompatActivity {
 //        list.add(new Model(Model.TEXT_TYPE,"Hello2. This is the Text-only View Type. Nice to meet you",0));
 //        list.add(new Model(Model.TEXT_TYPE,"Hello3. This is the Text-only View Type. Nice to meet you",0));
         //Shrink string to only digits
+        value = value.split("\\.")[0];
         value = value.replaceAll("[^\\d]", "");
         int keyS = Integer.valueOf(value);
+        Log.d(TAG, "viewIdkeyS: " + keyS);
 //        int k = Integer.valueOf(valueShape);
 //        int h = Integer.valueOf(valueRate);
+        valueRate = valueRate.split("\\.")[0];
         valueRate = valueRate.replaceAll("[^\\d]", "");
         int h = Integer.valueOf(valueRate);
+        Log.d(TAG, "viewIdH: " + h);
+        valueShape = valueShape.split("\\.")[0];
         valueShape = valueShape.replaceAll("[^\\d]", "");
         int k = Integer.parseInt(valueShape);
+        Log.d(TAG, "viewIdK: " + k);
         for (short i = 1; i <= keyS; i++) {
             double sum=0;
             for (short j = 1; j <= k; j++) {
