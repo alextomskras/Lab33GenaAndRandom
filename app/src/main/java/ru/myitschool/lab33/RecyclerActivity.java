@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Random;
 
 import ru.myitschool.lab33.databinding.ActivityRecyclerBinding;
@@ -40,6 +41,8 @@ public class RecyclerActivity extends AppCompatActivity {
 //Get-Params-form-First-Activity
         Intent intent = getIntent();
         String value = intent.getStringExtra("keySizeParam"); //if it's a string you stored.
+        String valueShape = intent.getStringExtra("keyShapeParam");
+        String valueRate = intent.getStringExtra("keyRateParam");
 
         TextView tvRecycler = (TextView) findViewById(R.id.random_number_result);
 
@@ -74,11 +77,23 @@ public class RecyclerActivity extends AppCompatActivity {
 //        list.add(new Model(Model.TEXT_TYPE,"Hello1. This is the Text-only View Type. Nice to meet you",0));
 //        list.add(new Model(Model.TEXT_TYPE,"Hello2. This is the Text-only View Type. Nice to meet you",0));
 //        list.add(new Model(Model.TEXT_TYPE,"Hello3. This is the Text-only View Type. Nice to meet you",0));
+        //Shrink string to only digits
+        value = value.replaceAll("[^\\d]", "");
         int keyS = Integer.valueOf(value);
-        for (short i = 1; i < keyS; i++) {
-           String randTXT = String.valueOf(rand.nextInt(i));
+//        int k = Integer.valueOf(valueShape);
+//        int h = Integer.valueOf(valueRate);
+        valueRate = valueRate.replaceAll("[^\\d]", "");
+        int h = Integer.valueOf(valueRate);
+        valueShape = valueShape.replaceAll("[^\\d]", "");
+        int k = Integer.parseInt(valueShape);
+        for (short i = 1; i <= keyS; i++) {
+            double sum=0;
+            for (short j = 1; j <= k; j++) {
+                sum+=Math.log(rand.nextDouble());
+            }
+            String randTXT = String.valueOf(-sum/h);
             Log.d(TAG, "viewId: " + randTXT);
-            list.add(new Model(Model.TEXT_TYPE,randTXT,0));
+            list.add(new Model(Model.TEXT_TYPE, randTXT, 0));
         }
 //        list.add(new Model(Model.IMAGE_TYPE,"Hi. I display a cool image too besides the omnipresent TextView.",R.drawable.wtc));
 //        list.add(new Model(Model.AUDIO_TYPE,"Hey. Pressing the FAB button will playback an audio file on loop.",R.raw.sound));
@@ -91,5 +106,9 @@ public class RecyclerActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(adapter);
+
+//        private static boolean isNumeric(String str){
+//            return str != null && str.matches("[0-9.]+");
+//        }
     }
 }

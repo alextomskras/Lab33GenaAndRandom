@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Button buttonMain = binding.content.getRandomNums;
         EditText sizeParam = binding.content.sizeParam;
+        EditText shapeParam = binding.content.shapeParam;
+        EditText rateParam = binding.content.rateParam;
 
         buttonMain.setOnClickListener(v ->
         {
@@ -34,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
             Intent myIntent = new Intent(MainActivity.this, RecyclerActivity.class);
 //            String value = "PROVERKA";
             String value = String.valueOf(sizeParam.getText());
+            String valueShape = String.valueOf(shapeParam.getText());
+            String valueRate = String.valueOf(rateParam.getText());
             myIntent.putExtra("keySizeParam", value); //Optional parameters
+            myIntent.putExtra("keyShapeParam", valueShape);
+            myIntent.putExtra("keyRateParam", valueRate);
             this.startActivity(myIntent);
         });
     }
